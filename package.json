@@ -10,6 +10,12 @@
   "engines": {
     "node": ">=18"
   },
+  "files": [
+    "src"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "test": "node --test"
   }

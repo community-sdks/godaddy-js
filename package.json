@@ -1,5 +1,5 @@
 {
-  "name": "community-sdks/godaddy-javascript",
+  "name": "@community-sdks/godaddy-js",
   "version": "1.0.0",
   "description": "Fetch-based JavaScript SDK for the GoDaddy APIs in this repository.",
   "type": "module",

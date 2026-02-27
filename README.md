@@ -3,8 +3,7 @@
 ## Getting Started
 
 ```bash
-cd godaddy/godaddy-javascript
-npm install
+npm install @community-sdks/godaddy-js
 ```
 
 ```js

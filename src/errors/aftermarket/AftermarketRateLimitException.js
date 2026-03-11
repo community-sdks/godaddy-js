@@ -1,0 +1,3 @@
+import { AftermarketApiException } from './AftermarketApiException.js';
+
+export class AftermarketRateLimitException extends AftermarketApiException {}

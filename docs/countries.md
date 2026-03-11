@@ -4,20 +4,62 @@ Client accessor: `client.countries()`
 
 ## Method Index
 
-- `getCountries`: `GetCountriesRequestDto` -> `GetCountriesResponseDto`
-- `getCountry`: `GetCountryRequestDto` -> `GetCountryResponseDto`
+- [`getCountries`](#getcountries): `GetCountriesResponseDto`
+- [`getCountry`](#getcountry): `GetCountryResponseDto`
 
-## Usage
+## Methods
+
+### getCountries
+
+Returns: `GetCountriesResponseDto`
+
+Request code:
 
 ```js
-import { Client, Config } from '../src/index.js';
-import { GetCountriesRequestDto } from '../src/index.js';
+import { Client, Config, GetCountriesRequestDto } from '@community-sdks/godaddy-js';
 
 const client = new Client(new Config({ apiKey: 'your-key', apiSecret: 'your-secret' }));
 const response = await client.countries().getCountries(new GetCountriesRequestDto());
-console.log(response.raw);
 ```
 
-## Response Shape
+Response JSON example:
 
-All response DTOs extend `BaseResponseDto` and expose the decoded payload in `.raw`.
+```json
+{
+  "countryKey": "US",
+  "label": "United States",
+  "callingCode": "1"
+}
+```
+
+### getCountry
+
+Returns: `GetCountryResponseDto`
+
+Request code:
+
+```js
+import { Client, Config, GetCountryRequestDto } from '@community-sdks/godaddy-js';
+
+const client = new Client(new Config({ apiKey: 'your-key', apiSecret: 'your-secret' }));
+const response = await client.countries().getCountry(new GetCountryRequestDto());
+```
+
+Response JSON example:
+
+```json
+{
+  "countryKey": "US",
+  "label": "United States",
+  "states": [
+    {
+      "stateKey": "AZ",
+      "label": "Arizona"
+    }
+  ]
+}
+```
+
+## Exceptions
+
+Service-specific exceptions are under `src/errors/countries/*` and expose `getErrorResponse()`.

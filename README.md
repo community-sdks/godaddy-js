@@ -1,4 +1,4 @@
-# GoDaddy JavaScript SDK
+# Unofficial GoDaddy JavaScript SDK
 
 ## Getting Started
 
@@ -7,54 +7,42 @@ npm install @community-sdks/godaddy-js
 ```
 
 ```js
-import { Client, Config } from './src/index.js';
-
-const client = new Client(new Config({
-  apiKey: 'your-key',
-  apiSecret: 'your-secret'
-}));
-```
-
-## API Style
-
-- Service methods use unique camelCase names (for example `getCustomerDomain`, `listSubscriptionCertificates`).
-- Methods avoid HTTP verb/path-prefixed names (no `get__v2_...`, `post__...`, etc.).
-- Each method accepts a request DTO class.
-- Each method returns a response DTO class.
-
-## DTO Usage
-
-```js
-import {
-  Client,
-  Config,
-  DomainsListRequest,
-  DomainCollectionResponse,
-} from './src/index.js';
+import { Client, Config } from '@community-sdks/godaddy-js';
 
 const client = new Client(new Config({
   apiKey: 'your-key',
   apiSecret: 'your-secret',
 }));
-
-const response = await client.domains().list(new DomainsListRequest({
-  xShopperId: '123',
-  limit: 10,
-}));
-
-if (response instanceof DomainCollectionResponse) {
-  console.log(response.raw);
-}
 ```
 
-Request DTOs expose request-shaping helpers used internally:
+## Environment Base URLs
 
-- `toPathParams()`
-- `toQueryParams()`
-- `toHeaders()`
-- `toBody()`
+Base URLs are configured through `Config`.
 
-Response DTOs expose decoded payload on `.raw`.
+- Sandbox (OTE): `https://api.ote-godaddy.com`
+- Production: `https://api.godaddy.com`
+
+By default, services use sandbox/OTE base URLs unless overridden in service definitions.
+
+Use production globally:
+
+```js
+const client = new Client(new Config({
+  apiKey: 'your-key',
+  apiSecret: 'your-secret',
+  baseUrl: 'https://api.godaddy.com',
+}));
+```
+
+Use sandbox explicitly:
+
+```js
+const client = new Client(new Config({
+  apiKey: 'your-key',
+  apiSecret: 'your-secret',
+  baseUrl: 'https://api.ote-godaddy.com',
+}));
+```
 
 ## Services
 
